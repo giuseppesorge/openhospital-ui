@@ -159,6 +159,7 @@ export type TPermission =
 	| 'patientconsensus.update'
 	| 'patientconsensus.delete'
 	| 'patient.export'
+	| 'patient.full_record'
 	| 'patients.create'
 	| 'patients.read'
 	| 'patients.update'

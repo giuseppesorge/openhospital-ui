@@ -31,6 +31,20 @@ export const patientRoutes = (server: PollyServer) => {
 			}
 		});
 
+		server.get('/:code/full-record').intercept((req, res) => {
+			const code = req.params.code;
+			switch (code) {
+				case '1234561':
+					res.status(400);
+					break;
+				default:
+					res.status(200).json({
+						...patientExportDTO,
+						patient: { ...patientDTO, code },
+					});
+			}
+		});
+
 		server.get('/:code').intercept((req, res) => {
 			const code = req.params.code;
 			switch (code) {

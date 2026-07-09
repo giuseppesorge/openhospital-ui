@@ -792,6 +792,28 @@ paths:
                 type: string
       security:
       - bearerAuth: []
+  /patients/{code}/full-record:
+    get:
+      tags:
+      - Patients
+      description: GDPR Art. 15 - Right of access
+      operationId: getPatientFullRecord
+      parameters:
+      - name: code
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int32
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PatientExportDTO"
+      security:
+      - bearerAuth: []
   /patientconsensus/{patientId}:
     get:
       tags:

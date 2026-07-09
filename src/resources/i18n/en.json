@@ -220,7 +220,11 @@
 		"updatesuccessful": "The patient was edit successfully.",
 		"createother": "Add Another Patient",
 		"status": "Status",
-		"exportdata": "Export patient data"
+		"exportdata": "Export patient data",
+		"viewfullrecord": "View full record",
+		"fullrecord": "Full record",
+		"fullrecordfield": "Field",
+		"fullrecordvalue": "Value"
 	},
 	"opd": {
 		"newopd": "Create new OPD Visit",

@@ -1,6 +1,7 @@
 import {
 	EditRounded,
 	FileDownloadRounded,
+	FolderSharedRounded,
 	Notes,
 	Person,
 } from '@mui/icons-material';
@@ -40,6 +41,7 @@ import InfoBox from '../../accessories/infoBox/InfoBox';
 import { ProfilePicture } from '../../accessories/profilePicture/ProfilePicture';
 import InPatientDashboardMenu from './InPatientDashboardMenu';
 import OutPatientDashboardMenu from './OutPatientDashboardMenu';
+import PatientFullRecordView from './PatientFullRecordView';
 import './styles.scss';
 import type { IUserSection, TActivityTransitionState } from './types';
 
@@ -124,6 +126,8 @@ const PatientDetailsActivity = () => {
 	const { exportPatientData, exportStatus } = usePatientDataExport(
 		patient.data?.code,
 	);
+
+	const [fullRecordOpen, setFullRecordOpen] = useState(false);
 
 	const personalData = (
 		<>
@@ -327,6 +331,32 @@ const PatientDetailsActivity = () => {
 												)}
 											</div>
 										</Permission>
+
+										<Permission require="patient.full_record">
+											<div className="patientDetails__personalData_edit_button_wrapper">
+												<div className="patientDetails__personalData_edit_button">
+													<Button
+														type="button"
+														variant="contained"
+														color="primary"
+														dataCy="view-full-record"
+														onClick={() => setFullRecordOpen(true)}
+													>
+														<FolderSharedRounded
+															fontSize="small"
+															style={{ color: 'white' }}
+														/>
+														<span>{t('patient.viewfullrecord')}</span>
+													</Button>
+												</div>
+											</div>
+										</Permission>
+
+										<PatientFullRecordView
+											open={fullRecordOpen}
+											onClose={() => setFullRecordOpen(false)}
+											code={patient.data?.code}
+										/>
 
 										<div className="patientDetails_status">
 											{patient?.data?.status === PatientDTOStatusEnum.I ? (
